@@ -4,7 +4,7 @@
     <test name="TestNG Test Group">
     	<parameter name="browser" value="chrome" />
         <classes>
-        	<class name="selenium_webtest.Webtest"/>
+        	<class name="selenium.web.test.Webtest"/>
         </classes>
     </test>
 </suite>
