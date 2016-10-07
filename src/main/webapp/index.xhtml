@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+<h:body>
+
+<!-- 	<h:form> -->
+<!-- 	   <p:editor value="#{editor.value}" /> -->
+<!-- 	</h:form> -->
+
+	<h:form id="form" style="width: 800px;margin:0 auto;">
+	<center>
+		<h1>Test Primefaces</h1>
+	   <p:growl id="msgs" showDetail="true"/>
+	   	
+	 	<p:panelGrid id="editPanel" columns="2">
+		 	<f:facet name="header">
+	            User
+	        </f:facet>
+           <h:outputLabel for="userId" value="Id: " />
+           <p:inputText id="userId" value="#{userVM.user.id}" disabled="true" />
+          <h:outputLabel for="userName" value="Name: " />
+           <p:inputText id="userName" value="#{userVM.user.name}" required="true" requiredMessage="Name is required."/>
+           <h:outputLabel for="userLogin" value="Login: " />
+           <p:inputText id="userLogin" value="#{userVM.user.login}" required="true" requiredMessage="Login is required."/>
+           <h:outputLabel for="userLogin" value="Password: " />
+           <p:inputText id="userPassword" value="#{userVM.user.password}" required="true" requiredMessage="Password is required."/>
+           <f:facet name="footer">
+               <p:commandButton value="Add" action="#{dtEditView.fwAdd()}" disabled="#{not empty userVM.user.id}" process=":form:editPanel" update=":form"/>
+               <p:commandButton value="Update" action="#{dtEditView.fwUpdate()}" disabled="#{empty userVM.user.id}" process=":form:editPanel" update=":form"/>
+               <p:commandButton value="Remove" disabled="#{empty userVM.user.id}" onclick="PF('editConfirmRemoveDiag').show();" process="@this" />
+               <p:commandButton value="Cancel" action="#{dtEditView.fwCancel()}" process="@this" update=":form"/>
+           </f:facet>
+       </p:panelGrid>
+       <p:spacer height="30px;"/>
+	   <p:dataTable id="tableUser" var="user" value="#{dtEditView.users}" editable="true" style="margin-bottom:20px" widgetVar="tableUserWidgetVar" selectionMode="single" reflow="true" selection="#{dtEditView.userSeletedBean}" rowKey="#{user.id}">
+
+			<f:facet name="header">
+	            User Table
+	        </f:facet>
+	 
+			<p:ajax event="rowSelect" listener="#{dtEditView.onRowSelect}" update=":form:editPanel :form:msgs" />
+			<p:ajax event="rowUnselect" listener="#{dtEditView.onRowUnselect}" update=":form:editPanel :form:msgs" />
+			        	
+	       <p:column headerText="Id">
+	       		<h:outputText value="#{user.id}" />
+	       </p:column>
+	 
+	       <p:column headerText="Name">
+	          <h:outputText value="#{user.name}" />
+	       </p:column>
+	 
+	       <p:column headerText="Login">
+	           <h:outputText value="#{user.login}" />
+	       </p:column>
+	 
+	       <p:column headerText="Password">
+	       		<h:outputText value="#{user.password}" />
+	       </p:column>
+	 
+<!-- 	       <p:column style="width:32px"> -->
+<!-- 	           <p:rowEditor /> -->
+<!-- 	       </p:column> -->
+	   </p:dataTable>
+	  
+		</center>
+		<p:confirmDialog header="Confirm Remove Dialog" id="confirmRemoveDialog" message="Are you sure want to delete?" severity="alert" widgetVar="editConfirmRemoveDiag">
+			<p:commandButton actionListener="#{dtEditView.fwRemove()}" id="confirmRemoveBtn" oncomplete="PF('editConfirmRemoveDiag').hide();" process="@form" update=":form" value="Ok"/>
+			<p:commandButton id="declineRemoveBtn" onclick="PF('editConfirmRemoveDiag').hide();" type="button" value="Cancel"/>
+		</p:confirmDialog>
+   </h:form>
+   
+</h:body>
+</html>
