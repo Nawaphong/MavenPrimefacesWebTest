@@ -5,8 +5,7 @@
     <classes>
       <class name="selenium.web.test.Webtest">
         <methods>
-          <include name="TestB_update"/>
-          <include name="TestA_insert"/>
+          <include name="afterTest"/>
           <include name="initWebDriver"/>
           <include name="TestC_delete"/>
         </methods>

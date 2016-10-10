@@ -59,7 +59,7 @@ public class Webtest {
 		driver.findElement(By.id("form:userName")).sendKeys("test01");
 		driver.findElement(By.id("form:userLogin")).sendKeys("test01");
 		driver.findElement(By.id("form:userPassword")).sendKeys("pass01");
-		driver.findElement(By.id("form:j_idt13")).click();
+		driver.findElement(By.id("form:j_idt11")).click();
 		element = getWebDriverWait().until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id='form:tableUser_data']/tr[1]")));
 		AssertJUnit.assertNotNull(element);
 	}
@@ -77,7 +77,7 @@ public class Webtest {
 		element = driver.findElement(By.id("form:userPassword"));
 		element.clear();
 		element.sendKeys("pass02");
-		element = getWebDriverWait().until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("form:j_idt14"))));
+		element = getWebDriverWait().until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("form:j_idt12"))));
 		element.click();
 		Thread.sleep(500);
 		String name = driver.findElement(By.xpath("//*[@id='form:tableUser_data']/tr/td[2]")).getText();
@@ -89,10 +89,12 @@ public class Webtest {
 	@Test
 	public void TestC_delete() throws InterruptedException, AWTException{
 		Thread.sleep(500);
-		element = getWebDriverWait().until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("form:j_idt15"))));
+		element = getWebDriverWait().until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("form:j_idt13"))));
 		element.click();
-		Robot rb =new Robot();
-		rb.keyPress(KeyEvent.VK_ENTER);
+		Thread.sleep(3000);
+		driver.findElement(By.id("form:confirmRemoveBtn")).click();
+//		Robot rb =new Robot();
+//		rb.keyPress(KeyEvent.VK_ENTER);
 		Thread.sleep(3000);
 		element = getWebDriverWait().until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id='form:tableUser_data']/tr[1]")));
 		String name = element.getText();
