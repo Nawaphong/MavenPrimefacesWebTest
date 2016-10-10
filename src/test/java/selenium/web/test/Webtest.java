@@ -94,7 +94,7 @@ public class Webtest {
 		Thread.sleep(500);
 		element = getWebDriverWait().until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("form:j_idt15"))));
 		element.click();
-		Robot rb =new Robot();
+		Robot rb = new Robot();
 		rb.keyPress(KeyEvent.VK_ENTER);
 		Thread.sleep(3000);
 		element = getWebDriverWait().until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id='form:tableUser_data']/tr[1]")));
