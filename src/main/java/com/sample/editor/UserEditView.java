@@ -23,7 +23,6 @@ import com.sample.jpa.UserLocal;
 @ManagedBean(name = "dtEditView")
 @ViewScoped
 public class UserEditView implements Serializable {
-	
 	/**
 	 * 
 	 */
