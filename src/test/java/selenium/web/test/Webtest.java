@@ -106,14 +106,12 @@ public class Webtest {
 		assertTestUpdate(name, login, pass);
 	}
 
-	@Test
+	@Test(enabled=false)
 	public void TestC_delete() throws InterruptedException, AWTException {
-		element = getWebDriverWait()
-				.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("form:j_idt13"))));
+		element = getWebDriverWait().until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("form:j_idt13"))));
 		element.click();
 		driver.findElement(By.id("form:confirmRemoveBtn")).click();
-		element = getWebDriverWait()
-				.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id='form:tableUser_data']/tr[1]")));
+		element = getWebDriverWait().until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id='form:tableUser_data']/tr[1]")));
 		String name = element.getText();
 		assertTestDelete(name);
 	}
