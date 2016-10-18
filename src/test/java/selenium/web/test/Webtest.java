@@ -29,7 +29,6 @@ import org.testng.annotations.Test;
 import com.google.common.base.Function;
 
 public class Webtest {
-	
 	protected WebDriver driver;
 	protected WebDriverWait wait;
 	protected WebElement element = null;
